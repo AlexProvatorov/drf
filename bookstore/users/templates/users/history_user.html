@@ -1,0 +1,37 @@
+{% extends 'book_store/base.html'%}
+{% load static %}
+
+{% block content %}
+<div class="container">
+{% if personal_positions %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Наименование</th>
+      <th scope="col">Количество</th>
+      <th scope="col">Цена</th>
+      <th scope="col">Сумма</th>
+      <th scope="col">Статус</th>
+      <th scope="col">Дата покупки</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for personal_position in personal_positions %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{% url "product" personal_position.item.slug %}">{{ personal_position.item.name }}</a></td>
+      <td>{{ personal_position.count }}</td>
+      <td>{{ personal_position.item.cost }}</td>
+      <td>{{ personal_position.total }}</td>
+      <td>{{ personal_position.get_status_display }}</td>
+      <td>{{ personal_position.created_at }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+  <p>Вы пока ничего не купили. Воспользуйтесь поиском или перейдите в <a href="{% url "catalog" "all" %}">каталог</a>, чтобы найти интересные товары.</p>
+{% endif %}
+</div>
+{% endblock %}

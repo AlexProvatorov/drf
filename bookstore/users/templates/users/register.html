@@ -1,0 +1,15 @@
+{% extends 'book_store/base.html'%}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for f in form %}
+        <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <button type="submit" class="btn btn-outline-primary">Регистрация</button>
+    </form>
+</div>
+{% endblock %}
