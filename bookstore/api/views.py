@@ -58,15 +58,6 @@ class AuthorViewSet(ModelViewSet):
     throttle_classes = [UserRateThrottle, AnonRateThrottle,]
 
 
-class CartViewSet(ModelViewSet):
-    """
-    CRUD EndPoint для работы над корзиной.
-    """
-    queryset = Cart.cart_objects.filter(status="PENDING")
-    serializer_class = CartSerializer
-    permission_classes = [IsOwnerUser | IsAdminUser]
-
-
 class UserViewSet(ModelViewSet):
     """
     CRUD EndPoint для работы над пользователями, только для админа.
