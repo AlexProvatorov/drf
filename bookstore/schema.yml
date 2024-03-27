@@ -1,0 +1,1486 @@
+openapi: 3.0.3
+info:
+  title: Your Project API
+  version: 1.0.0
+  description: Your project description
+paths:
+  /api/v1/authors/:
+    get:
+      operationId: authors_list
+      description: CRUD EndPoint для работы над авторами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - authors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAuthorList'
+          description: ''
+    post:
+      operationId: authors_create
+      description: CRUD EndPoint для работы над авторами. Админ может все, юзеры только
+        читать.
+      tags:
+      - authors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Author'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+          description: ''
+  /api/v1/authors/{id}/:
+    get:
+      operationId: authors_retrieve
+      description: CRUD EndPoint для работы над авторами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Авторы.
+        required: true
+      tags:
+      - authors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+          description: ''
+    put:
+      operationId: authors_update
+      description: CRUD EndPoint для работы над авторами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Авторы.
+        required: true
+      tags:
+      - authors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Author'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+          description: ''
+    patch:
+      operationId: authors_partial_update
+      description: CRUD EndPoint для работы над авторами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Авторы.
+        required: true
+      tags:
+      - authors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAuthor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAuthor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAuthor'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+          description: ''
+    delete:
+      operationId: authors_destroy
+      description: CRUD EndPoint для работы над авторами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Авторы.
+        required: true
+      tags:
+      - authors
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/books/:
+    get:
+      operationId: books_list
+      description: CRUD EndPoint для работы над книгами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - books
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBookList'
+          description: ''
+    post:
+      operationId: books_create
+      description: CRUD EndPoint для работы над книгами. Админ может все, юзеры только
+        читать.
+      tags:
+      - books
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Book'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Book'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: ''
+  /api/v1/books/{id}/:
+    get:
+      operationId: books_retrieve
+      description: CRUD EndPoint для работы над книгами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Книги.
+        required: true
+      tags:
+      - books
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: ''
+    put:
+      operationId: books_update
+      description: CRUD EndPoint для работы над книгами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Книги.
+        required: true
+      tags:
+      - books
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Book'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Book'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: ''
+    patch:
+      operationId: books_partial_update
+      description: CRUD EndPoint для работы над книгами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Книги.
+        required: true
+      tags:
+      - books
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedBook'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedBook'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedBook'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: ''
+    delete:
+      operationId: books_destroy
+      description: CRUD EndPoint для работы над книгами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Книги.
+        required: true
+      tags:
+      - books
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/cart/:
+    get:
+      operationId: cart_list
+      description: EndPoint предоставляющий владельцу возможность просматривать свою
+        корзину.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - cart
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCartList'
+          description: ''
+  /api/v1/cart-add/{id}/:
+    get:
+      operationId: cart_add_retrieve
+      description: EndPoint позволяющий юзеру добавлять товары в корзину.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - cart-add
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+    put:
+      operationId: cart_add_update
+      description: EndPoint позволяющий юзеру добавлять товары в корзину.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - cart-add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cart'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cart'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+    patch:
+      operationId: cart_add_partial_update
+      description: EndPoint позволяющий юзеру добавлять товары в корзину.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - cart-add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCart'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCart'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCart'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+    delete:
+      operationId: cart_add_destroy
+      description: EndPoint позволяющий юзеру добавлять товары в корзину.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - cart-add
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/tags/:
+    get:
+      operationId: tags_list
+      description: CRUD EndPoint для работы над тегами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - tags
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTagList'
+          description: ''
+    post:
+      operationId: tags_create
+      description: CRUD EndPoint для работы над тегами. Админ может все, юзеры только
+        читать.
+      tags:
+      - tags
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tag'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+  /api/v1/tags/{id}/:
+    get:
+      operationId: tags_retrieve
+      description: CRUD EndPoint для работы над тегами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Теги.
+        required: true
+      tags:
+      - tags
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+    put:
+      operationId: tags_update
+      description: CRUD EndPoint для работы над тегами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Теги.
+        required: true
+      tags:
+      - tags
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tag'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+    patch:
+      operationId: tags_partial_update
+      description: CRUD EndPoint для работы над тегами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Теги.
+        required: true
+      tags:
+      - tags
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTag'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+    delete:
+      operationId: tags_destroy
+      description: CRUD EndPoint для работы над тегами. Админ может все, юзеры только
+        читать.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Теги.
+        required: true
+      tags:
+      - tags
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/user-history/:
+    get:
+      operationId: user_history_list
+      description: EndPoint для отображения истории текущего пользователя.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - user-history
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedHistoryUserList'
+          description: ''
+  /api/v1/users/:
+    get:
+      operationId: users_list
+      description: CRUD EndPoint для работы над пользователями, только для админа.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUserList'
+          description: ''
+    post:
+      operationId: users_create
+      description: CRUD EndPoint для работы над пользователями, только для админа.
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/v1/users-histories/:
+    get:
+      operationId: users_histories_list
+      description: |-
+        EndPoint для отображения историй покупок всех пользователей. Только чтение
+        и только для админа.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - users-histories
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedHistoryUserList'
+          description: ''
+  /api/v1/users/{id}/:
+    get:
+      operationId: users_retrieve
+      description: CRUD EndPoint для работы над пользователями, только для админа.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Пользователи.
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: users_update
+      description: CRUD EndPoint для работы над пользователями, только для админа.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Пользователи.
+        required: true
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: users_partial_update
+      description: CRUD EndPoint для работы над пользователями, только для админа.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Пользователи.
+        required: true
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    delete:
+      operationId: users_destroy
+      description: CRUD EndPoint для работы над пользователями, только для админа.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Пользователи.
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Author:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          title: Имя
+          maxLength: 255
+        last_name:
+          type: string
+          title: Фамилия
+          maxLength: 255
+      required:
+      - first_name
+      - id
+      - last_name
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        slug:
+          type: string
+          title: URL
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        name:
+          type: string
+          title: Название
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+        cost:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Цена
+        count_in_stock:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Количество в наличии
+        is_active:
+          type: boolean
+          title: Товар активен
+        photo:
+          type: string
+          format: uri
+          title: Фото
+        time_created:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Время создания
+        time_updated:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Время последнего редактирования
+        date_release:
+          type: string
+          format: date
+          title: Дата выхода
+        tags:
+          type: array
+          items:
+            type: integer
+            title: Теги
+          title: Теги
+        authors:
+          type: array
+          items:
+            type: integer
+            title: Авторы
+          title: Авторы
+      required:
+      - authors
+      - cost
+      - count_in_stock
+      - date_release
+      - description
+      - id
+      - name
+      - time_created
+      - time_updated
+    Cart:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          title: Количество
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Время создания
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          title: Статус
+        item:
+          type: integer
+          title: Товар
+      required:
+      - created_at
+      - id
+      - status
+    HistoryUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          title: Количество
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Время создания
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          title: Статус
+        customer:
+          type: integer
+          title: Пользователь
+        item:
+          type: integer
+          title: Товар
+      required:
+      - created_at
+      - customer
+      - id
+      - status
+    PaginatedAuthorList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Author'
+    PaginatedBookList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Book'
+    PaginatedCartList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cart'
+    PaginatedHistoryUserList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoryUser'
+    PaginatedTagList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    PaginatedUserList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    PatchedAuthor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          title: Имя
+          maxLength: 255
+        last_name:
+          type: string
+          title: Фамилия
+          maxLength: 255
+    PatchedBook:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        slug:
+          type: string
+          title: URL
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        name:
+          type: string
+          title: Название
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+        cost:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Цена
+        count_in_stock:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Количество в наличии
+        is_active:
+          type: boolean
+          title: Товар активен
+        photo:
+          type: string
+          format: uri
+          title: Фото
+        time_created:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Время создания
+        time_updated:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Время последнего редактирования
+        date_release:
+          type: string
+          format: date
+          title: Дата выхода
+        tags:
+          type: array
+          items:
+            type: integer
+            title: Теги
+          title: Теги
+        authors:
+          type: array
+          items:
+            type: integer
+            title: Авторы
+          title: Авторы
+    PatchedCart:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          title: Количество
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Время создания
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          title: Статус
+        item:
+          type: integer
+          title: Товар
+    PatchedTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        slug:
+          type: string
+          title: URL
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        name:
+          type: string
+          title: Имя тега
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+    PatchedUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        password:
+          type: string
+          title: Пароль
+          maxLength: 128
+        is_superuser:
+          type: boolean
+          title: Статус суперпользователя
+          description: Указывает, что пользователь имеет все права без явного их назначения.
+        username:
+          type: string
+          title: Имя пользователя
+          description: Обязательное поле. Не более 150 символов. Только буквы, цифры
+            и символы @/./+/-/_.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          title: Имя
+          maxLength: 150
+        last_name:
+          type: string
+          title: Фамилия
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Адрес электронной почты
+          maxLength: 254
+        is_staff:
+          type: boolean
+          title: Статус персонала
+          description: Отметьте, если пользователь может входить в административную
+            часть сайта.
+        is_active:
+          type: boolean
+          title: Активный
+          description: Отметьте, если пользователь должен считаться активным. Уберите
+            эту отметку вместо удаления учётной записи.
+        slug:
+          type: string
+          title: URL
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        photo:
+          type: string
+          format: uri
+          title: Фото
+          pattern: (?:png|jpg|jpeg)$
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+          title: Дата рождения
+        groups:
+          type: array
+          items:
+            type: integer
+            title: Группы
+          title: Группы
+          description: Группы, к которым принадлежит данный пользователь. Пользователь
+            получит все права, указанные в каждой из его/её групп.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+            title: Права пользователя
+          title: Права пользователя
+          description: Индивидуальные права данного пользователя.
+    StatusEnum:
+      enum:
+      - COMPLETED
+      - PENDING
+      - CANCELLED
+      type: string
+      description: |-
+        * `COMPLETED` - Завершен
+        * `PENDING` - В процессе
+        * `CANCELLED` - Отменен
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        slug:
+          type: string
+          title: URL
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        name:
+          type: string
+          title: Имя тега
+          maxLength: 255
+        description:
+          type: string
+          title: Описание
+      required:
+      - description
+      - id
+      - name
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        password:
+          type: string
+          title: Пароль
+          maxLength: 128
+        is_superuser:
+          type: boolean
+          title: Статус суперпользователя
+          description: Указывает, что пользователь имеет все права без явного их назначения.
+        username:
+          type: string
+          title: Имя пользователя
+          description: Обязательное поле. Не более 150 символов. Только буквы, цифры
+            и символы @/./+/-/_.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          title: Имя
+          maxLength: 150
+        last_name:
+          type: string
+          title: Фамилия
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Адрес электронной почты
+          maxLength: 254
+        is_staff:
+          type: boolean
+          title: Статус персонала
+          description: Отметьте, если пользователь может входить в административную
+            часть сайта.
+        is_active:
+          type: boolean
+          title: Активный
+          description: Отметьте, если пользователь должен считаться активным. Уберите
+            эту отметку вместо удаления учётной записи.
+        slug:
+          type: string
+          title: URL
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        photo:
+          type: string
+          format: uri
+          title: Фото
+          pattern: (?:png|jpg|jpeg)$
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+          title: Дата рождения
+        groups:
+          type: array
+          items:
+            type: integer
+            title: Группы
+          title: Группы
+          description: Группы, к которым принадлежит данный пользователь. Пользователь
+            получит все права, указанные в каждой из его/её групп.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+            title: Права пользователя
+          title: Права пользователя
+          description: Индивидуальные права данного пользователя.
+      required:
+      - id
+      - password
+      - username
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
